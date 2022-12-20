@@ -1,2 +1,9 @@
 1).https://codeforces.com/problemset/problem/1630/A
 ---> concept of complement set of bits
+
+formulas related to bits:-
+1). a+b = (a AND b) + (a OR b)
+2). AND and OR operations
+3). a+b = (a XOR b) + 2(a AND b)
+4). a OR b = (a XOR b) + (a AND b)
+5). a - b = a - (a AND b) - ( (~a) AND b)
