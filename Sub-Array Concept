@@ -14,3 +14,6 @@ who did.
 1).When a number is added to a subarray, it increases the number of pairs by its previous appearances.
 
 2).When a number is removed from the subarray, it decreases the number of pairs by its remaining appearances.
+
+Ex- number of pair let's say 3 (with count 3 (n * (n-1)/2)) when count increases by 1 number of pairs also increase but by previous count like
+for count 4 number of pairs will be 6 , which is 3(prev number of pairs) + 3(prev count). And removal of count also works in the same fashion.
