@@ -1,0 +1,4 @@
+questions link:- https://leetcode.com/problems/flip-string-to-monotone-increasing/
+->will use countOne for counting ones and ans as for flipping zero to one
+->every time encounter with zero will check :-
+        MAX(number of ones need to flip,number we have required to flip earlier + 1)
