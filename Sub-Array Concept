@@ -1,0 +1,16 @@
+question :- https://leetcode.com/problems/count-the-number-of-good-subarrays/
+***************** very importatnt *****************************
+-> whenver we are required to find a sub-array with some property let say x always try to:-
+
+# Think in reverse manner like in this above question what we can think of is:-
+        // number of good sub-arrays = total number of subarrays - number of sub-array which are not good
+        // not goof sub-array = having count of pairs less than k
+# Always try to use the principle of inclusion and exclusion because some times its easier to find count of sub-arrays which are not satiesfying the property than thes ones
+who did.
+
+# Most of the time the property is given to us is the one we have to write in the constion of 2nd for loop.
+
+-------------------- Some common sence things -----------------------
+1).When a number is added to a subarray, it increases the number of pairs by its previous appearances.
+
+2).When a number is removed from the subarray, it decreases the number of pairs by its remaining appearances.
