@@ -1,0 +1,4 @@
+Questions link :- https://codeforces.com/problemset/problem/1324/D
+->create a new array let say c which store difference between a-b.
+->and then sort it.
+->at the just apply binary search.
