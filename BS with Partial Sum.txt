@@ -1,0 +1,79 @@
+Questions link :- https://codeforces.com/problemset/problem/975/C
+
+
+public static void main(String[] args){
+
+        FastReader fs = new FastReader();
+        int n = fs.nextInt();
+        int k = fs.nextInt();
+        int soldiers[]=new int[n];
+        long arrows[]=new long[k];
+        for(int i=0;i<n;i++) soldiers[i] = fs.nextInt();
+        for(int i=0;i<k;i++) arrows[i] = fs.nextLong();
+
+        long pre[]=new long[n];
+        for(int i=0;i<n;i++){
+            if(i == 0) pre[i] = soldiers[i];
+            else pre[i] = pre[i-1] + soldiers[i];
+        }
+
+//        0  1 2 3 4 || n = 5
+//        1  2 1 2 1
+//        3 10 1 1 1
+//        ps = 3  pre = [ 1 ,1 ,{2} ,4 ,5 ]
+//        index = 1
+//        damage = 1 current index = 2
+//        ans 3 5 4 4 3
+        int curr_index = 0;
+        long partial_sum = 0;
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+
+            long damage = arrows[i];
+            int index = upper(damage,curr_index,pre,partial_sum);
+            if(index != -1){
+
+                int remaining = n - (index + 1);
+                if(remaining == 0){
+                    ans.add(n);
+                    curr_index = 0;
+                    partial_sum = 0;// since all the soldier have been re-incarnated
+                }else{
+                    ans.add(remaining);
+                    curr_index = index + 1;
+                    partial_sum += damage;
+                }
+            }
+            else{
+                partial_sum += damage;
+                int ind = n - curr_index;
+                ans.add(ind);
+            }
+        }
+
+        for(int i:ans)
+            System.out.println(i);
+
+
+
+    }
+    
+    
+    
+    // PARTIAL SUM UPPER BOUND
+    
+    public static int upper(long val,int start,long []arr,long partialSum){
+        int low = start;
+        int high = arr.length-1;
+        int ans = -1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid] - partialSum<=val){
+                low = mid + 1;
+                ans  = mid;
+            }else{
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
