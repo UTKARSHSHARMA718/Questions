@@ -1,0 +1,50 @@
+Question link:- https://leetcode.com/contest/biweekly-contest-97/problems/maximize-win-from-two-segments/
+
+-> very nive of applying dp on the remaining segment in-order to find the max partition value after a given index.
+
+class Solution {
+    // dp on segments
+    public int maximizeWin(int[] pp, int k) {
+
+        int max=0;
+        int n = pp.length;
+        int dp[]=new int[n+1];
+        Arrays.fill(dp,-1);
+        for (int i = 0; i < n; i++) {
+            int up = upper(pp[i]+k,i,n-1,pp);
+            if(up != -1 ) {
+                max=Math.max(max,(up-i+1) + f(up+1,pp,dp,k));
+            }
+
+        }
+        
+        return max;
+
+    }
+    public static int f(int ind,int []pp,int []dp,int k){
+        if(ind>=pp.length)
+            return 0;
+        if(dp[ind] != -1)
+            return dp[ind];
+        
+        int nti = f(ind+1,pp,dp,k);
+        int ti = upper(pp[ind]+k,ind,pp.length-1,pp);
+        int maxLen = ti - ind + 1;
+        return dp[ind] = Math.max(maxLen,nti);
+    }
+    public static int upper(long val,int start,int end,int []arr){
+        int low = start;
+        int high = end;
+        int ans = -1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(arr[mid] <= val){
+                low = mid + 1;
+                ans  = mid;
+            }else{
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+}
