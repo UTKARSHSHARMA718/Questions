@@ -1,0 +1,2 @@
+Question link :- https://codeforces.com/problemset/problem/1366/C
+Hint:- the groups and try to compare groups by making number of zeroes and ones equal in a group. 
