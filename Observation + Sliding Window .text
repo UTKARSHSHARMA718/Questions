@@ -1,0 +1,5 @@
+
+Question Link:- https://leetcode.com/problems/minimize-deviation-in-array/
+
+     // TRICK :- Think about maximum number of values that can be exist , log2 (10^9) ~ 30, 30 * 10^5 = aprrox 10^6
+    // and now just run sliding window to cover the all the different possible index, and take the min of max - min amoung all
