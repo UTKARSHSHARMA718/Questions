@@ -1,0 +1,30 @@
+Question link:- https://codeforces.com/problemset/problem/1689/C
+
+As a sample:-
+public static long f(int node,List<List<Integer>> adj,boolean vis[],int []children){
+ 
+        if(dp[node]!=-1)
+            return dp[node];
+ 
+        List<Integer> bache = new ArrayList<>();
+        vis[node] = true;
+        for(Integer child:adj.get(node)){
+            if(vis[child] == false){
+                bache.add(child);
+            }
+        }
+ 
+        if(bache.size() == 0){
+            return 0;
+        }
+        else if(bache.size() == 1){
+            return children[bache.get(0)]-1;
+        }
+        else{
+            int child1 = bache.get(0);
+            int child2 = bache.get(1);
+            long ti =  f(child1,adj,vis,children) + children[child2] - 1;
+            long nti = f(child2,adj,vis,children) + children[child1] - 1;
+            return dp[node] = Math.max(ti,nti);
+        }
+    }
