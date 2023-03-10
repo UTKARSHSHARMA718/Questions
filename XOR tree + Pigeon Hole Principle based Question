@@ -1,0 +1,88 @@
+Question Link :- https://www.codechef.com/problems/C8KBFTREE
+
+Code for XOR trees generation:-
+
+
+    public static void main(String[] args) {
+        FastReader fs = new FastReader();
+        int t = fs.nextInt();
+        while (t-- >0){
+//////////////////////////////////////////////////////////////////////////
+            int n = fs.nextInt();
+            ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+            for(int i=0;i<n;i++)
+                adj.add(new ArrayList<>());
+            for(int i=0;i<n-1;i++){
+                int u = fs.nextInt()-1;
+                int v = fs.nextInt()-1;
+                int w = fs.nextInt();
+                adj.get(u).add(new Pair(v,w));
+                adj.get(v).add(new Pair(u,w));
+
+            }
+            int distxor[]=new int[n+1];
+            Arrays.fill(distxor,-1);
+            distxor[0] = 0;
+            boolean vis[]=new boolean[n+1];
+            dfs(0,distxor,vis,adj);
+///////////////////////////////////////////////////////////////////////////
+//            printArray(distxor);
+
+            long a=0,b=0,c=0,d=0;
+            int f=0;
+            HashMap<Integer,co_ordinates> map = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                for (int j = i+1; j < n; j++) {
+                    int xor = distxor[i] ^ distxor[j];
+                    if(map.containsKey(xor)){
+                        a = i+1; b = j+1; c = map.get(xor).i+1; d = map.get(xor).j+1;
+                        f=1;
+                        break;
+                    }
+                    else{
+                        map.put(xor,new co_ordinates(i,j));
+                    }
+                }
+                if(f==1)break;
+            }
+            if(f==1){
+                System.out.println(a+" "+b+" "+c+" "+d);
+            }
+            else{
+                System.out.println(-1);
+            }
+
+        }
+
+    }
+
+    // creating a XOR tree
+    public static void dfs(int node,int distxor[],boolean vis[],ArrayList<ArrayList<Pair>> adj){
+        vis[node] = true;
+        for(Pair it:adj.get(node)){
+            int v = it.vertex;
+            int w = it.weight;
+            if(vis[v] == false){
+                distxor[v] = w ^ distxor[node];
+                dfs(v,distxor,vis,adj);
+            }
+        }
+    }
+
+    static class co_ordinates{
+        int i; int j;
+        public co_ordinates(int i,int j){
+            this.i=i;
+            this.j=j;
+        }
+    }
+    static class Pair {
+        int vertex;
+        int weight;
+
+        public Pair(int v, int w) {
+        this.vertex = v;
+        this.weight = w;
+        }
+    }
+
