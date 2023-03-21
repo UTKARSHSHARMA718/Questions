@@ -1,0 +1,35 @@
+  Problem link:- https://docs.google.com/document/d/1zuw8hBXHsiTYTH8u986fQhn8TWfpOk9BQBIRH3lo_W8/edit
+  
+  public static void main(String[] args) throws IOException {
+
+        FastReader fs = new FastReader();
+        int cost[][] = new int[21][21];
+        int dp[][] = new int[21][(1<<21)];
+        for(int i[]:dp)
+            Arrays.fill(i,-1);
+
+        int n = fs.nextInt();
+        for(int i=0;i<n;i++)
+            for(int j=0;j<n;j++)
+                cost[i][j] = fs.nextInt();
+
+        System.out.println(ans(0,n,(1<<n) - 1,dp,cost));
+    }
+
+    public static int ans(int ind,int len,int mask,int [][]dp,int [][]cost){
+        if(ind>=len)
+            return 0;
+        if(dp[ind][mask] != -1){
+            return dp[ind][mask];
+        }
+        int res = Integer.MAX_VALUE;
+        for (int worker = 0; worker < len; worker++) {
+            if((mask & (1<<worker)) != 0){
+                int newMask = mask & (~(1<<worker));
+                res = Math.min(res, ans(ind+1,len,newMask,dp,cost) + cost[worker][ind]);
+            }
+        }
+
+        return dp[ind][mask] = res;
+    }
+
