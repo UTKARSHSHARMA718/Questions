@@ -1,0 +1,4 @@
+Link:https://codeforces.com/contest/1811/problem/E
+
+This trick is basically used to find number of values from 0 till X not having any digit let say d, but this can be extended in-order to find let's say number of values from 
+0 t0 to X not having multiple digits like d1, d2, etc.
