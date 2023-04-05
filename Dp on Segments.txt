@@ -1,6 +1,6 @@
 Question link:- https://leetcode.com/contest/biweekly-contest-97/problems/maximize-win-from-two-segments/
 
--> very nive of applying dp on the remaining segment in-order to find the max partition value after a given index.
+-> very nice way of applying dp on the remaining segment in-order to find the max partition value after a given index.
 
 class Solution {
     // dp on segments
