@@ -1,0 +1,4 @@
+
+-> A very nice Question teaches you about technique of finding larger/smaller elemenet than a given element in a matrix using 2D prefix sum in Order Of N x M time complexity.
+
+Link:- https://codeforces.com/contest/1731/problem/D
