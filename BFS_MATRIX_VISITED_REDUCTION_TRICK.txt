@@ -1,0 +1,3 @@
+Link:- https://leetcode.com/contest/weekly-contest-340/problems/minimum-number-of-visited-cells-in-a-grid/
+
+// a very cool trick to convert multiple visits to an index to a single visit.
