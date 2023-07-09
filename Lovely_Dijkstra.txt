@@ -1,0 +1,81 @@
+https://codeforces.com/contest/1846/problem/G
+
+
+public static void main(String[] args) throws IOException {
+        FastReader fs = new FastReader();
+        BufferedWriter output = new BufferedWriter(new OutputStreamWriter(System.out));
+        int t = fs.nextInt();
+        while (t-- > 0) {
+            int n = fs.nextInt();
+            int medicines = fs.nextInt();
+            String s = fs.next();
+            Pair<Integer,Integer,Integer> arr[] = new Pair[medicines];
+            for (int i = 0; i < medicines; i++) {
+                    int d = fs.nextInt();
+                    String rem = fs.next();
+                    String add = fs.next();
+                    arr[i] = new Pair<>(d,Integer.parseInt(rem,2),Integer.parseInt(add,2));
+            }
+            long dp[] = new long[2020];
+            PriorityQueue<Pair<Integer,Integer,Integer>> pq = new PriorityQueue<>();
+            int start = Integer.parseInt(s,2);
+            Arrays.fill(dp,9999_9999_9);
+            dp[start] = 0;
+            pq.add(new Pair<>(0,start,start));
+            while(pq.size()>0){
+ 
+                Pair<Integer,Integer,Integer> node = pq.poll();
+                for (int i = 0; i < medicines; i++) {
+                    int newVal = (node.second & ~(arr[i].second)) | arr[i].third;
+                    if(node.first + arr[i].first < dp[newVal]){
+                        dp[newVal] = node.first + arr[i].first;
+                        pq.add(new Pair<>(node.first + arr[i].first, newVal, newVal));
+                    }
+                }
+ 
+            }
+ 
+            System.out.println(dp[0] == 9999_9999_9 ? -1: dp[0]);
+        }
+ 
+        output.flush();
+    }
+
+
+
+static public class Pair<T, U, M> implements Comparable<Pair> {
+        final T first;
+        final U second;
+        final M third;
+
+        public Pair(T first, U second, M third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+
+        public T getFirst() {
+            return first;
+        }
+
+        public U getSecond() {
+            return second;
+        }
+
+        public M getThird() {
+            return third;
+        }
+
+        public int compareTo(Pair o){
+            int a = (int)this.first;
+            int b = (int)o.first;
+
+            return a-b;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + first + ", " + second + ", " + third + ")";
+        }
+    }
+
